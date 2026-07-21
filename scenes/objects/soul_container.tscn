@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bf472kpobkjmg"]
+
+[ext_resource type="Script" uid="uid://bvejmuoclabvs" path="res://Scripts/objects/soul_container.gd" id="1_p12tj"]
+
+[node name="SoulContainer" type="Button" unique_id=1553828041]
+anchors_preset = -1
+anchor_right = 0.007
+anchor_bottom = 0.012
+offset_right = -0.06400013
+offset_bottom = 0.22399998
+script = ExtResource("1_p12tj")
+
+[node name="Background" type="Panel" parent="." unique_id=1256755065]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Icon" type="TextureRect" parent="." unique_id=2136201865]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="IdLabel" type="Label" parent="." unique_id=1105556483]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="StateOverlay" type="ColorRect" parent="." unique_id=1063211202]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

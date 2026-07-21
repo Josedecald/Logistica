@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bp8h4b6ukcwpv"]
+
+[node name="Gates" type="Control" unique_id=1350567159]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HeavenGate" type="Panel" parent="." unique_id=928972340]
+layout_mode = 0
+offset_left = 947.0
+offset_top = 200.0
+offset_right = 1092.0
+offset_bottom = 323.0
+
+[node name="ReincarnationGate" type="Panel" parent="." unique_id=1287267941]
+layout_mode = 0
+offset_left = 958.0
+offset_top = 339.0
+offset_right = 1089.0
+offset_bottom = 456.0
+
+[node name="HellGate" type="Panel" parent="." unique_id=1616760294]
+layout_mode = 0
+offset_left = 944.0
+offset_top = 469.0
+offset_right = 1110.0
+offset_bottom = 609.0

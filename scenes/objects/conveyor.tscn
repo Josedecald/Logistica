@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d05ijpvodng2f"]
+
+[ext_resource type="Script" uid="uid://cm7u6544h0d6t" path="res://Scripts/objects/conveyor.gd" id="1_rukxg"]
+[ext_resource type="PackedScene" uid="uid://bf472kpobkjmg" path="res://scenes/objects/soul_container.tscn" id="2_ooh5n"]
+
+[node name="Conveyor" type="Panel" unique_id=1990395732]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.47000003
+offset_left = 1.0
+offset_top = 152.0
+offset_right = 5.0
+offset_bottom = 189.43997
+script = ExtResource("1_rukxg")
+container_spacing = 200.0
+soul_container_scene = ExtResource("2_ooh5n")
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=259935331]
+position = Vector2(1074, 177)

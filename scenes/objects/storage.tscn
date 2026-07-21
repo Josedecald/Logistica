@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://gpfau5c8s6dg"]
+
+[node name="Storage" type="Panel" unique_id=111381246]
+offset_left = 33.0
+offset_top = 195.0
+offset_right = 888.0
+offset_bottom = 599.0
