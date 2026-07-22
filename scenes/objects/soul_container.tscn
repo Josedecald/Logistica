@@ -3,11 +3,10 @@
 [ext_resource type="Script" uid="uid://bvejmuoclabvs" path="res://Scripts/objects/soul_container.gd" id="1_p12tj"]
 
 [node name="SoulContainer" type="Button" unique_id=1553828041]
-anchors_preset = -1
-anchor_right = 0.007
-anchor_bottom = 0.012
-offset_right = 31.936
-offset_bottom = 32.224
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(40, 40)
+offset_transform_enabled = true
 script = ExtResource("1_p12tj")
 
 [node name="Background" type="Panel" parent="." unique_id=1256755065]

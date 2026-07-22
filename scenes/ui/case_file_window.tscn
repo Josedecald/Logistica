@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bnim7qe5erpho"]
+
+[ext_resource type="Script" uid="uid://d1i83c8b8bhfh" path="res://Scripts/objects/case_file_window.gd" id="1_phobf"]
+
+[node name="CaseFIleWindow" type="Control" unique_id=1993331961]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_phobf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=192635431]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.23137255)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=321939654]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1718226450]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=1540641117]
+layout_mode = 2
+
+[node name="NombreLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1106520808]
+layout_mode = 2
+
+[node name="EdadLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=761347385]
+layout_mode = 2
+
+[node name="ProfesionLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1159266176]
+layout_mode = 2
+
+[node name="CausaLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1629499081]
+layout_mode = 2
+
+[node name="IncidentesLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1173950072]
+layout_mode = 2
+
+[node name="IncidentesList" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1803316973]
+layout_mode = 2
+
+[node name="AtenuantesLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=244333980]
+layout_mode = 2
+
+[node name="AtenuantesList" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1432147762]
+layout_mode = 2
+
+[node name="AgravantesLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1677270546]
+layout_mode = 2
+
+[node name="AgravantesList" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1766500575]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=693901103]
+layout_mode = 2

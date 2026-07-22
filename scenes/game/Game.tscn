@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://g1ebbbqcpcm1"]
 
+[ext_resource type="Script" uid="uid://c1rhsd15x6fd7" path="res://Scripts/systems/game.gd" id="1_7qcb4"]
 [ext_resource type="PackedScene" uid="uid://d05ijpvodng2f" path="res://scenes/objects/conveyor.tscn" id="1_vrspl"]
 [ext_resource type="PackedScene" uid="uid://gpfau5c8s6dg" path="res://scenes/objects/storage.tscn" id="2_7qcb4"]
 [ext_resource type="PackedScene" uid="uid://bp8h4b6ukcwpv" path="res://scenes/objects/gates.tscn" id="3_lyhax"]
@@ -12,6 +13,7 @@ offset_left = -17.0
 offset_top = 1.0
 offset_right = -3484.3843
 offset_bottom = -2341.352
+script = ExtResource("1_7qcb4")
 
 [node name="Background" type="ColorRect" parent="." unique_id=830136191]
 layout_mode = 0
@@ -29,9 +31,19 @@ offset_bottom = 40.0
 [node name="Conveyor" parent="World" unique_id=1990395732 instance=ExtResource("1_vrspl")]
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 4.0
+offset_bottom = 37.439972
 
 [node name="Storage" parent="World" unique_id=111381246 instance=ExtResource("2_7qcb4")]
 layout_mode = 0
+offset_left = 258.0
+offset_top = 258.0
+offset_right = 702.0
+offset_bottom = 479.0
 
 [node name="Gates" parent="World" unique_id=1350567159 instance=ExtResource("3_lyhax")]
 layout_mode = 0

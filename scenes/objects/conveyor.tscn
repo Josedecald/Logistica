@@ -18,3 +18,6 @@ soul_container_scene = ExtResource("2_ooh5n")
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=259935331]
 position = Vector2(1074, 177)
+
+[node name="StopPoint" type="Marker2D" parent="." unique_id=735467379]
+position = Vector2(0, 177)
