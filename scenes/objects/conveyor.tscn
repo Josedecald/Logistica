@@ -12,7 +12,8 @@ offset_top = 152.0
 offset_right = 5.0
 offset_bottom = 189.43997
 script = ExtResource("1_rukxg")
-container_spacing = 200.0
+spawn_interval = 1.0
+container_spacing = 30.0
 soul_container_scene = ExtResource("2_ooh5n")
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=259935331]
