@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dwoouauy4e2ql"]
+
+[ext_resource type="Script" uid="uid://d5oxkpk3unll" path="res://Scripts/objects/storage_cell.gd" id="1_5iefx"]
+
+[node name="storage_cell" type="Panel" unique_id=1928557265]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_5iefx")

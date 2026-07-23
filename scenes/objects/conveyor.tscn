@@ -4,13 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bf472kpobkjmg" path="res://scenes/objects/soul_container.tscn" id="2_ooh5n"]
 
 [node name="Conveyor" type="Panel" unique_id=1990395732]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.47000003
-offset_left = 1.0
-offset_top = 152.0
-offset_right = 5.0
-offset_bottom = 189.43997
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_rukxg")
 spawn_interval = 1.0
 container_spacing = 30.0

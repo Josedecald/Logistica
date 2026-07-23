@@ -1,7 +1,21 @@
 [gd_scene format=3 uid="uid://gpfau5c8s6dg"]
 
+[ext_resource type="Script" uid="uid://c4ho1kislb8qm" path="res://Scripts/objects/storage.gd" id="1_0nvm7"]
+[ext_resource type="PackedScene" uid="uid://dwoouauy4e2ql" path="res://scenes/objects/storage_cell.tscn" id="2_1iyo6"]
+
 [node name="Storage" type="Panel" unique_id=111381246]
-offset_left = 33.0
-offset_top = 195.0
-offset_right = 888.0
-offset_bottom = 599.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0nvm7")
+storage_cell_scene = ExtResource("2_1iyo6")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=519227052]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -8,6 +8,8 @@ var container_id := ""
 var state
 var is_selected := false
 
+var current_cell: StorageCell = null
+
 @onready var state_overlay: ColorRect = $StateOverlay
 
 func _ready() -> void:
@@ -22,3 +24,9 @@ func set_selected(value: bool) -> void:
 	is_selected = value
 	state_overlay.visible = is_selected
 	state_overlay.color = Color(1, 1, 0, 0.35)
+
+func _get_drag_data(_at_position: Vector2):
+	var preview := duplicate() as Control
+	preview.modulate.a = 0.6
+	set_drag_preview(preview)
+	return self

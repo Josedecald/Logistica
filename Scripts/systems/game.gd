@@ -5,15 +5,20 @@ var selected_container: SoulContainer = null
 @onready var conveyor: Conveyor = $World/Conveyor
 @onready var gates: Control = $World/Gates
 @onready var windows: Control = $Windows
+@onready var storage: Storage = $World/Storage
 
 var case_file_window: CaseFileWindow
 
 func _ready() -> void:
 	for gate in gates.get_children():
 		if gate is Gate:
-			gate.gate_clicked.connect(_on_gate_clicked)
+			gate.container_drop_requested.connect(_on_gate_drop_requested)
 	conveyor.container_created.connect(_register_container)
 
+	for cell in storage.grid.get_children():
+		if cell is StorageCell:
+			cell.container_drop_requested.connect(_on_storage_drop_requested)
+			
 	var case_file_window_scene := preload("res://scenes/ui/case_file_window.tscn")
 	case_file_window = case_file_window_scene.instantiate()
 	windows.add_child(case_file_window)
@@ -31,10 +36,18 @@ func _on_container_selected(container: SoulContainer) -> void:
 	else:
 		selected_container = null
 
-func _on_gate_clicked(destino: Gate.Destino, gate: Gate) -> void:
-	if selected_container == null:
-		return
-	conveyor.remove_container(selected_container)
-	gate.receive_container(selected_container)
+func _on_gate_drop_requested(container: SoulContainer, gate: Gate) -> void:
+	if container.current_cell:
+		container.current_cell.vacate()
+	else:
+		conveyor.remove_container(container)
+
 	case_file_window.visible = false
-	selected_container = null
+	gate.receive_container(container)
+	
+func _on_storage_drop_requested(container: SoulContainer, cell: StorageCell) -> void:
+	if container.current_cell:
+		container.current_cell.vacate()
+	else:
+		conveyor.remove_container(container)
+	cell.place_container(container)

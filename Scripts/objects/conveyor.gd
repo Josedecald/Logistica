@@ -44,6 +44,15 @@ func create_container():
 		add_child(new_container)
 		conveyor_queue.append(new_container)
 		new_container.position = spawn_point.position
+		var test_file := CaseFile.new()
+		test_file.nombre = "Carlos Mendoza"
+		test_file.edad = 54
+		test_file.profesion = "Alcalde"
+		test_file.causa_defuncion = "Infarto"
+		test_file.incidentes = ["Corrupción administrativa", "Soborno", "Malversación de fondos"]
+		test_file.atenuantes = ["Colaboró con la investigación"]
+		test_file.agravantes = ["Reincidencia"]
+		new_container.case_file = test_file
 		container_created.emit(new_container)
 
 func can_spawn_container() -> bool:
