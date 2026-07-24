@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="RuleCorrupcionGrave" format=3 uid="uid://bens2huyxevh7"]
+
+[ext_resource type="Script" uid="uid://cpvdq5xly3l3y" path="res://Scripts/data/rules/rule_corrupcion_grave.gd" id="1_0ov20"]
+
+[resource]
+script = ExtResource("1_0ov20")
+metadata/_custom_type_script = "uid://cpvdq5xly3l3y"

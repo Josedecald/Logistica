@@ -1,30 +1,42 @@
 [gd_scene format=3 uid="uid://bf472kpobkjmg"]
 
 [ext_resource type="Script" uid="uid://bvejmuoclabvs" path="res://Scripts/objects/soul_container.gd" id="1_p12tj"]
+[ext_resource type="Texture2D" uid="uid://ch5n3tw7ono50" path="res://assets/sprites/prueba/JustBox-AllBox.png" id="2_x1y2e"]
 
 [node name="SoulContainer" type="Button" unique_id=1553828041]
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(100, 100)
+offset_right = 100.0
+offset_bottom = 100.0
 pivot_offset = Vector2(40, 40)
 offset_transform_enabled = true
 script = ExtResource("1_p12tj")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1641586647]
+position = Vector2(61, 39)
+texture = ExtResource("2_x1y2e")
+hframes = 5
+vframes = 4
+frame = 10
+
 [node name="Background" type="Panel" parent="." unique_id=1256755065]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Icon" type="TextureRect" parent="." unique_id=2136201865]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="IdLabel" type="Label" parent="." unique_id=1105556483]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="StateOverlay" type="ColorRect" parent="." unique_id=1063211202]
+[node name="StateOverlay" type="ColorRect" parent="." unique_id=236803082]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1024.0
+offset_bottom = 768.0

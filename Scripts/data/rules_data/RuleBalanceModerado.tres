@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="RuleBalanceModerado" format=3 uid="uid://bk6au5ddx5aoh"]
+
+[ext_resource type="Script" uid="uid://bplyldqqm6q3" path="res://Scripts/data/rules/rule_balance_moderado.gd" id="1_eqo1f"]
+
+[resource]
+script = ExtResource("1_eqo1f")
+metadata/_custom_type_script = "uid://bplyldqqm6q3"

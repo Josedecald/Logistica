@@ -4,12 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://dwoouauy4e2ql" path="res://scenes/objects/storage_cell.tscn" id="2_1iyo6"]
 
 [node name="Storage" type="Panel" unique_id=111381246]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = -1
+anchor_right = 0.098
+offset_right = 711.0
+offset_bottom = 359.0
 script = ExtResource("1_0nvm7")
+columns = 6
 storage_cell_scene = ExtResource("2_1iyo6")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=519227052]

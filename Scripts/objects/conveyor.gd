@@ -23,10 +23,9 @@ func _process(delta: float) -> void:
 
 		var min_x: float
 		if i == 0:
-			min_x = stop_point.position.x
+			min_x = stop_point.position.x + 100
 		else:
 			min_x = conveyor_queue[i - 1].position.x + container_spacing
-
 		if container.position.x < min_x:
 			container.position.x = min_x
 
@@ -45,14 +44,7 @@ func create_container():
 		conveyor_queue.append(new_container)
 		new_container.position = spawn_point.position
 		var test_file := CaseFile.new()
-		test_file.nombre = "Carlos Mendoza"
-		test_file.edad = 54
-		test_file.profesion = "Alcalde"
-		test_file.causa_defuncion = "Infarto"
-		test_file.incidentes = ["Corrupción administrativa", "Soborno", "Malversación de fondos"]
-		test_file.atenuantes = ["Colaboró con la investigación"]
-		test_file.agravantes = ["Reincidencia"]
-		new_container.case_file = test_file
+		new_container.case_file = CaseFileGenerator.generar()
 		container_created.emit(new_container)
 
 func can_spawn_container() -> bool:
@@ -60,7 +52,7 @@ func can_spawn_container() -> bool:
 		return true
 	var spawn_x = spawn_point.position.x
 	var last_container_x = conveyor_queue[-1].position.x
-	var distance = spawn_x - last_container_x
+	var distance = (spawn_x - last_container_x)
 	if distance > container_spacing:
 		return true
 	return false

@@ -22,18 +22,25 @@ func show_case_file(case_file: CaseFile) -> void:
 	profesion_label.text = "Profesión: %s" % case_file.profesion
 	causa_label.text = "Causa de defunción: %s" % case_file.causa_defuncion
 
-	_fill_list(incidentes_list, case_file.incidentes)
-	_fill_list(atenuantes_list, case_file.atenuantes)
-	_fill_list(agravantes_list, case_file.agravantes)
+	var atenuantes := case_file.modificadores.filter(
+		func(m: Modificador): return m.tipo == Modificador.Tipo.ATENUANTE
+	)
+	var agravantes := case_file.modificadores.filter(
+		func(m: Modificador): return m.tipo == Modificador.Tipo.AGRAVANTE
+	)
+
+	_fill_list(incidentes_list, case_file.incidentes, func(i: Incidente): return i.texto)
+	_fill_list(atenuantes_list, atenuantes, func(m: Modificador): return m.texto)
+	_fill_list(agravantes_list, agravantes, func(m: Modificador): return m.texto)
 
 	visible = true
 
-func _fill_list(container: VBoxContainer, items: Array[String]) -> void:
+func _fill_list(container: VBoxContainer, items: Array, texto_fn: Callable) -> void:
 	for child in container.get_children():
 		child.queue_free()
 	for item in items:
 		var label := Label.new()
-		label.text = "• %s" % item
+		label.text = "• %s" % texto_fn.call(item)
 		container.add_child(label)
 
 func _on_close_pressed() -> void:

@@ -30,7 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1718226450]
-custom_minimum_size = Vector2(420, 620)
+custom_minimum_size = Vector2(620, 840)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=1839154516]
@@ -58,18 +58,21 @@ layout_mode = 2
 
 [node name="IncidentesLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1173950072]
 layout_mode = 2
+text = "Lista De Incidentes"
 
 [node name="IncidentesList" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1803316973]
 layout_mode = 2
 
 [node name="AtenuantesLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=244333980]
 layout_mode = 2
+text = "Lista De Atenuantes"
 
 [node name="AtenuantesList" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1432147762]
 layout_mode = 2
 
 [node name="AgravantesLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1677270546]
 layout_mode = 2
+text = "Lista De Agravantes"
 
 [node name="AgravantesList" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1766500575]
 layout_mode = 2

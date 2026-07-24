@@ -37,6 +37,9 @@ func _on_container_selected(container: SoulContainer) -> void:
 		selected_container = null
 
 func _on_gate_drop_requested(container: SoulContainer, gate: Gate) -> void:
+	var acierto := ClassificationManager.es_correcto(gate.destino, container.case_file)
+	print("Envío a %s — %s" % [Gate.Destino.keys()[gate.destino], "CORRECTO" if acierto else "INCORRECTO"])
+	
 	if container.current_cell:
 		container.current_cell.vacate()
 	else:
@@ -51,3 +54,4 @@ func _on_storage_drop_requested(container: SoulContainer, cell: StorageCell) -> 
 	else:
 		conveyor.remove_container(container)
 	cell.place_container(container)
+	
