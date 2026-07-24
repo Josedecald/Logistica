@@ -44,10 +44,10 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 320.0
-offset_top = 2.0
-offset_right = 324.0
-offset_bottom = 39.439972
+offset_left = 420.0
+offset_top = 16.0
+offset_right = 424.0
+offset_bottom = 53.439972
 grow_horizontal = 1
 grow_vertical = 1
 container_spacing = 50.0
@@ -76,6 +76,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="ManualButton" type="Button" parent="HUD" unique_id=948880795]
+layout_mode = 0
+offset_left = 1639.0
+offset_top = 44.0
+offset_right = 1706.0
+offset_bottom = 75.0
+text = "Manual"
 
 [node name="Windows" type="Control" parent="." unique_id=1079348094]
 layout_mode = 1

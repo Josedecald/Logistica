@@ -5,16 +5,13 @@ signal container_created(container: SoulContainer)
 
 @export var speed := 150.0
 @export var spawn_interval := 2.0
-@export var container_spacing := 100.0
+@export var gap := 20.0  # espacio visual EXTRA entre contenedores, además de su propio ancho
 var elapsed := 0.0
 var conveyor_queue: Array[SoulContainer] = []
 
 @export var soul_container_scene: PackedScene
 @onready var spawn_point: Marker2D = $SpawnPoint
 @onready var stop_point: Marker2D = $StopPoint
-
-func _ready() -> void:
-	pass
 
 func _process(delta: float) -> void:
 	for i in conveyor_queue.size():
@@ -23,9 +20,10 @@ func _process(delta: float) -> void:
 
 		var min_x: float
 		if i == 0:
-			min_x = stop_point.position.x + 100
+			min_x = stop_point.position.x
 		else:
-			min_x = conveyor_queue[i - 1].position.x + container_spacing
+			var anterior = conveyor_queue[i - 1]
+			min_x = anterior.position.x + anterior.size.x + gap
 		if container.position.x < min_x:
 			container.position.x = min_x
 
@@ -43,19 +41,15 @@ func create_container():
 		add_child(new_container)
 		conveyor_queue.append(new_container)
 		new_container.position = spawn_point.position
-		var test_file := CaseFile.new()
 		new_container.case_file = CaseFileGenerator.generar()
 		container_created.emit(new_container)
 
 func can_spawn_container() -> bool:
 	if conveyor_queue.is_empty():
 		return true
-	var spawn_x = spawn_point.position.x
-	var last_container_x = conveyor_queue[-1].position.x
-	var distance = (spawn_x - last_container_x)
-	if distance > container_spacing:
-		return true
-	return false
+	var last := conveyor_queue[-1]
+	var distance = spawn_point.position.x - last.position.x
+	return distance > last.size.x + gap
 
 func remove_container(container: SoulContainer) -> void:
 	conveyor_queue.erase(container)

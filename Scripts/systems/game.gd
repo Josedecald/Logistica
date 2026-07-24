@@ -7,6 +7,9 @@ var selected_container: SoulContainer = null
 @onready var windows: Control = $Windows
 @onready var storage: Storage = $World/Storage
 
+@onready var manual_button: Button = $HUD/ManualButton
+var manual_window: ManualWindow
+
 var case_file_window: CaseFileWindow
 
 func _ready() -> void:
@@ -22,6 +25,11 @@ func _ready() -> void:
 	var case_file_window_scene := preload("res://scenes/ui/case_file_window.tscn")
 	case_file_window = case_file_window_scene.instantiate()
 	windows.add_child(case_file_window)
+	
+	var manual_window_scene := preload("res://scenes/ui/manual_window.tscn")
+	manual_window = manual_window_scene.instantiate()
+	windows.add_child(manual_window)
+	manual_button.pressed.connect(manual_window.mostrar)
 
 func _register_container(container: SoulContainer) -> void:
 	container.selected.connect(_on_container_selected)

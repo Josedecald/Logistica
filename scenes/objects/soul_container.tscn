@@ -31,12 +31,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="IdLabel" type="Label" parent="." unique_id=1105556483]
-visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="StateOverlay" type="ColorRect" parent="." unique_id=236803082]
-layout_mode = 0
-offset_right = 1024.0
-offset_bottom = 768.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

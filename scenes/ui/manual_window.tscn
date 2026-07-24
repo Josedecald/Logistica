@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dclpyxkt1gu4p"]
+
+[ext_resource type="Script" uid="uid://bekjvqp48x67w" path="res://Scripts/objects/manual_window.gd" id="1_3sej3"]
+
+[node name="ManualWindow" type="Control" unique_id=2113644148]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3sej3")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1369319878]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.38039216)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1624644469]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -350.0
+offset_right = 300.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=481474738]
+custom_minimum_size = Vector2(600, 700)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=466181746]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1933092881]
+layout_mode = 2
+text = "Manual del Departamento"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=296781461]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+scroll_hint_mode = 3
+
+[node name="RuleList" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer/ScrollContainer" unique_id=236963990]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1938219629]
+layout_mode = 2
+text = "Cerrar"
