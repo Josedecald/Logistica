@@ -5,4 +5,7 @@
 [resource]
 script = ExtResource("1_x3ve4")
 nivel = 2
+destino = 0
+descripcion = "Las almas con 3 o más actos virtuosos y sin incidentes negativos van al Cielo"
+prioridad = 10
 metadata/_custom_type_script = "uid://dksmprty6ian6"

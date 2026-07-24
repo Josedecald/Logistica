@@ -4,4 +4,8 @@
 
 [resource]
 script = ExtResource("1_0ov20")
+nivel = 1
+destino = 2
+descripcion = "Las almas con 3 o más incidentes de corrupción van al Infierno"
+prioridad = 8
 metadata/_custom_type_script = "uid://cpvdq5xly3l3y"

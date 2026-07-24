@@ -4,4 +4,8 @@
 
 [resource]
 script = ExtResource("1_eqo1f")
+nivel = 1
+destino = 1
+descripcion = "Las almas con puntaje de 25 o más van a Reencarnación"
+prioridad = 5
 metadata/_custom_type_script = "uid://bplyldqqm6q3"
