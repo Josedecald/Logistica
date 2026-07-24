@@ -13,11 +13,23 @@ func _cargar_reglas() -> void:
 	if dir == null:
 		push_error("No se encontró la carpeta de reglas: res://Scripts/data/rules_data/")
 		return
-	for file_name in dir.get_files():
+	
+	print("Cargando reglas desde: res://Scripts/data/rules_data/")
+	var archivos := dir.get_files()
+	print("Archivos encontrados: ", archivos)
+	
+	for file_name in archivos:
 		if file_name.ends_with(".tres"):
-			var rule := load("res://Scripts/data/rules_data/" + file_name) as Rule
+			var ruta_completa := "res://Scripts/data/rules_data/" + file_name
+			print("Intentando cargar: ", ruta_completa)
+			var rule := load(ruta_completa) as Rule
 			if rule:
+				print("Regla cargada exitosamente: ", rule.descripcion)
 				reglas.append(rule)
+			else:
+				push_error("No se pudo cargar la regla: " + ruta_completa)
+	
+	print("Total de reglas cargadas: ", reglas.size())
 
 func destino_correcto(case_file: CaseFile) -> Gate.Destino:
 	for rule in reglas:
