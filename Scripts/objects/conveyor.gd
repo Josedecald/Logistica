@@ -14,22 +14,22 @@ var conveyor_queue: Array[SoulContainer] = []
 @onready var stop_point: Marker2D = $StopPoint
 
 func _process(delta: float) -> void:
-	for i in conveyor_queue.size():
-		var container = conveyor_queue[i]
-		container.position.x -= speed * delta
-
-		var min_x: float
-		if i == 0:
-			min_x = stop_point.position.x
-		else:
-			var anterior = conveyor_queue[i - 1]
-			min_x = anterior.position.x + anterior.size.x + gap
-		if container.position.x < min_x:
-			container.position.x = min_x
+	if DayManager.activa:
+		for i in conveyor_queue.size():
+			var container = conveyor_queue[i]
+			container.position.x -= speed * delta
+			var min_x: float
+			if i == 0:
+				min_x = stop_point.position.x
+			else:
+				var anterior = conveyor_queue[i - 1]
+				min_x = anterior.position.x + anterior.size.x + gap
+			if container.position.x < min_x:
+				container.position.x = min_x
 
 	elapsed += delta
 	while elapsed >= spawn_interval:
-		if can_spawn_container():
+		if DayManager.activa and can_spawn_container():
 			create_container()
 			elapsed -= spawn_interval
 		else:

@@ -31,11 +31,18 @@ func _cargar_reglas() -> void:
 	
 	print("Total de reglas cargadas: ", reglas.size())
 
-func destino_correcto(case_file: CaseFile) -> Gate.Destino:
+func regla_aplicada(case_file: CaseFile) -> Rule:
 	for rule in reglas:
 		if rule.nivel in niveles_activos and rule.evaluate(case_file):
-			return rule.destino
-	return Gate.Destino.REENCARNACION  # valor de emergencia solo para no crashear
+			return rule
+	return null
+
+func destino_correcto(case_file: CaseFile) -> Gate.Destino:
+	var rule := regla_aplicada(case_file)
+	if rule:
+		return rule.destino
+	push_error("Ninguna regla aplicó al expediente de: " + case_file.nombre)
+	return Gate.Destino.REENCARNACION
 
 func es_correcto(destino_enviado: Gate.Destino, case_file: CaseFile) -> bool:
 	return destino_enviado == destino_correcto(case_file)

@@ -1,7 +1,7 @@
 extends Control
 
 var selected_container: SoulContainer = null
-
+@onready var clock_label: Label = $HUD/ClockLabel
 @onready var conveyor: Conveyor = $World/Conveyor
 @onready var gates: Control = $World/Gates
 @onready var windows: Control = $Windows
@@ -30,6 +30,14 @@ func _ready() -> void:
 	manual_window = manual_window_scene.instantiate()
 	windows.add_child(manual_window)
 	manual_button.pressed.connect(manual_window.mostrar)
+	
+	DayManager.iniciar_jornada()
+	for gate in gates.get_children():
+		if gate is Gate:
+			gate.actualizar_cuota(0, DayManager.cuotas[gate.destino])
+
+func _process(_delta: float) -> void:
+	clock_label.text = "DÍA %d - %s   %s" % [DayManager.dia_actual, DayManager.turno_texto(), DayManager.hora_actual_texto()]
 
 func _register_container(container: SoulContainer) -> void:
 	container.selected.connect(_on_container_selected)
@@ -45,9 +53,13 @@ func _on_container_selected(container: SoulContainer) -> void:
 		selected_container = null
 
 func _on_gate_drop_requested(container: SoulContainer, gate: Gate) -> void:
-	var acierto := ClassificationManager.es_correcto(gate.destino, container.case_file)
-	print("Envío a %s — %s" % [Gate.Destino.keys()[gate.destino], "CORRECTO" if acierto else "INCORRECTO"])
-	
+	var regla := ClassificationManager.regla_aplicada(container.case_file)
+	var acierto := regla != null and gate.destino == regla.destino
+	var nivel := regla.nivel if regla else Rule.Nivel.FACIL
+
+	DayManager.registrar_envio(gate.destino, acierto, nivel)
+	gate.actualizar_cuota(DayManager.progreso.get(gate.destino, 0), DayManager.cuotas[gate.destino])
+
 	if container.current_cell:
 		container.current_cell.vacate()
 	else:

@@ -47,9 +47,7 @@ text = "Manual del Departamento"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=296781461]
 layout_mode = 2
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 2
-scroll_hint_mode = 3
+size_flags_vertical = 3
 
 [node name="RuleList" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer/ScrollContainer" unique_id=236963990]
 layout_mode = 2

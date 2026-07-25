@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bp8h4b6ukcwpv"]
 
-[ext_resource type="Script" uid="uid://ctth24is2xmcq" path="res://Scripts/objects/gate.gd" id="1_n2bjk"]
+[ext_resource type="PackedScene" uid="uid://wbp7rrieddpp" path="res://scenes/objects/gate.tscn" id="1_n2bjk"]
 
 [node name="Gates" type="Control" unique_id=1350567159]
 layout_mode = 3
@@ -8,28 +8,24 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HeavenGate" type="Panel" parent="." unique_id=928972340]
+[node name="HeavenGate" parent="." unique_id=1572192709 instance=ExtResource("1_n2bjk")]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 0
-offset_left = 947.0
-offset_top = 211.0
-offset_right = 1092.0
-offset_bottom = 334.0
-script = ExtResource("1_n2bjk")
+offset_right = 200.0
+offset_bottom = 200.0
 
-[node name="ReincarnationGate" type="Panel" parent="." unique_id=1287267941]
+[node name="ReincarnationGate" parent="." unique_id=1558911539 instance=ExtResource("1_n2bjk")]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 0
-offset_left = 947.0
-offset_top = 339.0
-offset_right = 1092.0
-offset_bottom = 462.0
-script = ExtResource("1_n2bjk")
+offset_top = 215.0
+offset_right = 200.0
+offset_bottom = 415.0
 destino = 1
 
-[node name="HellGate" type="Panel" parent="." unique_id=1616760294]
+[node name="HellGate" parent="." unique_id=721500970 instance=ExtResource("1_n2bjk")]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 0
-offset_left = 947.0
-offset_top = 466.0
-offset_right = 1092.0
-offset_bottom = 589.0
-script = ExtResource("1_n2bjk")
+offset_top = 430.0
+offset_right = 200.0
+offset_bottom = 630.0
 destino = 2

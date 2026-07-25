@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://c1rhsd15x6fd7" path="res://Scripts/systems/game.gd" id="1_7qcb4"]
 [ext_resource type="PackedScene" uid="uid://d05ijpvodng2f" path="res://scenes/objects/conveyor.tscn" id="1_vrspl"]
 [ext_resource type="PackedScene" uid="uid://gpfau5c8s6dg" path="res://scenes/objects/storage.tscn" id="2_7qcb4"]
-[ext_resource type="PackedScene" uid="uid://bnim7qe5erpho" path="res://scenes/ui/case_file_window.tscn" id="2_365ku"]
 [ext_resource type="Texture2D" uid="uid://dhqiejl3can1c" path="res://assets/sprites/prueba/background.png" id="2_lyhax"]
 [ext_resource type="PackedScene" uid="uid://bp8h4b6ukcwpv" path="res://scenes/objects/gates.tscn" id="3_lyhax"]
+[ext_resource type="Script" uid="uid://ba42j16mxy8k5" path="res://Scripts/systems/hud.gd" id="6_365ku"]
 
 [node name="Game" type="Control" unique_id=50478020]
 layout_mode = 3
@@ -15,9 +15,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7qcb4")
-
-[node name="CaseFIleWindow" parent="." unique_id=1993331961 instance=ExtResource("2_365ku")]
-layout_mode = 1
 
 [node name="Sprite2D" type="TextureRect" parent="." unique_id=1025342291]
 layout_mode = 1
@@ -50,7 +47,7 @@ offset_right = 424.0
 offset_bottom = 53.439972
 grow_horizontal = 1
 grow_vertical = 1
-container_spacing = 50.0
+speed = 150.0
 
 [node name="Storage" parent="World" unique_id=111381246 instance=ExtResource("2_7qcb4")]
 layout_mode = 0
@@ -63,10 +60,10 @@ offset_bottom = 734.0
 
 [node name="Gates" parent="World" unique_id=1350567159 instance=ExtResource("3_lyhax")]
 layout_mode = 0
-offset_left = 539.0
-offset_top = 142.0
-offset_right = 539.0
-offset_bottom = 142.0
+offset_left = 1509.0
+offset_top = 388.0
+offset_right = 1509.0
+offset_bottom = 388.0
 
 [node name="HUD" type="Control" parent="." unique_id=1362146731]
 layout_mode = 1
@@ -76,6 +73,47 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("6_365ku")
+
+[node name="ColorRect" type="ColorRect" parent="HUD" unique_id=201724618]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 22.0
+offset_right = 472.0
+offset_bottom = 62.0
+color = Color(0.0253638, 0.0253638, 0.025363795, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="HUD" unique_id=554002131]
+layout_mode = 0
+offset_left = 1449.0
+offset_top = 31.0
+offset_right = 1583.0
+offset_bottom = 82.0
+color = Color(0.0253638, 0.0253638, 0.025363795, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="HUD" unique_id=51060122]
+layout_mode = 0
+offset_left = 1178.0
+offset_top = 36.0
+offset_right = 1382.0
+offset_bottom = 76.0
+color = Color(0.0253638, 0.0253638, 0.025363795, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="HUD" unique_id=1957903077]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 103.0
+offset_right = 277.0
+offset_bottom = 316.0
+color = Color(0.0253638, 0.0253638, 0.025363795, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="HUD" unique_id=2123756593]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 22.0
+offset_right = 472.0
+offset_bottom = 62.0
+color = Color(0.0253638, 0.0253638, 0.025363795, 1)
 
 [node name="ManualButton" type="Button" parent="HUD" unique_id=948880795]
 layout_mode = 0
@@ -84,6 +122,46 @@ offset_top = 44.0
 offset_right = 1706.0
 offset_bottom = 75.0
 text = "Manual"
+
+[node name="ClockLabel" type="Label" parent="HUD" unique_id=1158492631]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 30.0
+offset_right = 85.0
+offset_bottom = 53.0
+text = "12"
+
+[node name="RendimientoLabel" type="Label" parent="HUD" unique_id=928411505]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 121.0
+offset_right = 120.0
+offset_bottom = 144.0
+text = "90"
+
+[node name="AlmasLabel" type="Label" parent="HUD" unique_id=324689933]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 193.0
+offset_right = 124.0
+offset_bottom = 216.0
+text = "58"
+
+[node name="ErroresLabel" type="Label" parent="HUD" unique_id=1115115632]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 268.0
+offset_right = 127.0
+offset_bottom = 291.0
+text = "4"
+
+[node name="MonedasLabel" type="Label" parent="HUD" unique_id=2137737788]
+layout_mode = 0
+offset_left = 1261.0
+offset_top = 42.0
+offset_right = 1302.0
+offset_bottom = 65.0
+text = "1,542"
 
 [node name="Windows" type="Control" parent="." unique_id=1079348094]
 layout_mode = 1
