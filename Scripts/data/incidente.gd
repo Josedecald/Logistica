@@ -23,3 +23,4 @@ enum Categoria {
 
 @export var categoria: Categoria
 @export var texto: String
+@export var cantidad_registros: int = 1

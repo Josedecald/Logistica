@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RuleSimple" format=3 uid="uid://cbtrbbiy6djsu"]
+
+[ext_resource type="Script" uid="uid://gl1cu50dyjeq" path="res://Scripts/data/rule_simple.gd" id="1_etoi7"]
+
+[resource]
+script = ExtResource("1_etoi7")
+categoria = 12
+destino = 2
+descripcion = "3+ Abuso de poder -> Infierno"
+prioridad = 10

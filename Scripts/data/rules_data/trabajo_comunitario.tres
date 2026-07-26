@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RuleSimple" format=3 uid="uid://dgyk784an51op"]
+
+[ext_resource type="Script" uid="uid://gl1cu50dyjeq" path="res://Scripts/data/rule_simple.gd" id="1_xe2vu"]
+
+[resource]
+script = ExtResource("1_xe2vu")
+categoria = 23
+cantidad = 4
+descripcion = "4+ Trabajo comunitario -> Cielo"
+prioridad = 6

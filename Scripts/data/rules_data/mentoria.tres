@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RuleSimple" format=3 uid="uid://ilooov51g2ew"]
+
+[ext_resource type="Script" uid="uid://gl1cu50dyjeq" path="res://Scripts/data/rule_simple.gd" id="1_hrf8s"]
+
+[resource]
+script = ExtResource("1_hrf8s")
+categoria = 29
+cantidad = 4
+descripcion = "4+ Mentoría o educación -> Cielo"
+prioridad = 6

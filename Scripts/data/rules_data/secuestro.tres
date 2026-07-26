@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RuleSimple" format=3 uid="uid://bu34w7nr2ycqb"]
+
+[ext_resource type="Script" uid="uid://gl1cu50dyjeq" path="res://Scripts/data/rule_simple.gd" id="1_tll3q"]
+
+[resource]
+script = ExtResource("1_tll3q")
+categoria = 9
+cantidad = 1
+destino = 2
+descripcion = "1+ Secuestro -> Infierno"
+prioridad = 18

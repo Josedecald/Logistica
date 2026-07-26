@@ -26,14 +26,12 @@ func _llenar_lista() -> void:
 	)
 	print("Reglas visibles después del filtro: ", reglas_visibles.size())
 
-	reglas_visibles.sort_custom(func(a, b): return a.prioridad > b.prioridad)
-
 	for rule in reglas_visibles:
 		var entry := Label.new()
-		entry.text = "→ %s\n   Destino: %s\n" % [rule.descripcion, Gate.Destino.keys()[rule.destino]]
+		entry.text = "→ %s\n   Destino: %s · Precedencia: %d\n" % [rule.descripcion, Gate.Destino.keys()[rule.destino], rule.prioridad]
 		entry.autowrap_mode = TextServer.AUTOWRAP_WORD
+		entry.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		rules_list.add_child(entry)
-	print("Hijos agregados a rules_list: ", rules_list.get_child_count())
 
 func _on_close_pressed() -> void:
 	visible = false

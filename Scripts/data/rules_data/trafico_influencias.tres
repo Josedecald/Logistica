@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RuleSimple" format=3 uid="uid://dcmn14u6hmunj"]
+
+[ext_resource type="Script" uid="uid://gl1cu50dyjeq" path="res://Scripts/data/rule_simple.gd" id="1_jf3xq"]
+
+[resource]
+script = ExtResource("1_jf3xq")
+categoria = 6
+destino = 2
+descripcion = "3+ Tráfico de influencias -> Infierno"
+prioridad = 8

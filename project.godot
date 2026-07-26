@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 ClassificationManager="*uid://dwpsvn4xu7v4j"
 CaseFileGenerator="*uid://01n0tk3jde3a"
 DayManager="*uid://bakhwdhosswuq"
+Progreso="*uid://cvyqsjvnycis2"
+BalanceMonitor="*res://Scripts/systems/balance_monitor.gd"
 
 [display]
 

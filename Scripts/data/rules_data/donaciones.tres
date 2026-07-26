@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RuleSimple" format=3 uid="uid://bt566mjca76t6"]
+
+[ext_resource type="Script" uid="uid://gl1cu50dyjeq" path="res://Scripts/data/rule_simple.gd" id="1_us2t6"]
+
+[resource]
+script = ExtResource("1_us2t6")
+categoria = 21
+descripcion = "3+ Donaciones -> Cielo"
+prioridad = 8

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RuleSimple" format=3 uid="uid://bm51n05h0vqfb"]
+
+[ext_resource type="Script" uid="uid://gl1cu50dyjeq" path="res://Scripts/data/rule_simple.gd" id="1_5egd3"]
+
+[resource]
+script = ExtResource("1_5egd3")
+categoria = 26
+cantidad = 2
+descripcion = "2+ Innovación beneficiosa -> Cielo"
+prioridad = 12

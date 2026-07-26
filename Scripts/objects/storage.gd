@@ -12,3 +12,4 @@ func _ready() -> void:
 	for i in columns * rows:
 		var cell := storage_cell_scene.instantiate() as StorageCell
 		grid.add_child(cell)
+		cell.set_bloqueada(i >= Progreso.celdas_desbloqueadas)

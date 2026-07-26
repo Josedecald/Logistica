@@ -60,10 +60,10 @@ offset_bottom = 734.0
 
 [node name="Gates" parent="World" unique_id=1350567159 instance=ExtResource("3_lyhax")]
 layout_mode = 0
-offset_left = 1509.0
-offset_top = 388.0
-offset_right = 1509.0
-offset_bottom = 388.0
+offset_left = 1457.0
+offset_top = 356.0
+offset_right = 1457.0
+offset_bottom = 356.0
 
 [node name="HUD" type="Control" parent="." unique_id=1362146731]
 layout_mode = 1
@@ -115,6 +115,22 @@ offset_right = 472.0
 offset_bottom = 62.0
 color = Color(0.0253638, 0.0253638, 0.025363795, 1)
 
+[node name="ColorRect6" type="ColorRect" parent="HUD" unique_id=1721331708]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 843.0
+offset_right = 1258.0
+offset_bottom = 970.0
+color = Color(0.0253638, 0.0253638, 0.025363795, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="HUD" unique_id=570540404]
+layout_mode = 0
+offset_left = 1459.0
+offset_top = 778.0
+offset_right = 2049.0
+offset_bottom = 905.0
+color = Color(0.0253638, 0.0253638, 0.025363795, 1)
+
 [node name="ManualButton" type="Button" parent="HUD" unique_id=948880795]
 layout_mode = 0
 offset_left = 1639.0
@@ -162,6 +178,24 @@ offset_top = 42.0
 offset_right = 1302.0
 offset_bottom = 65.0
 text = "1,542"
+
+[node name="ResultadoLabel" type="Label" parent="HUD" unique_id=138996714]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 850.0
+offset_right = 1360.0
+offset_bottom = 940.0
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="BalanceLabel" type="Label" parent="HUD" unique_id=1799826916]
+layout_mode = 0
+offset_left = 1420.0
+offset_top = 820.0
+offset_right = 1900.0
+offset_bottom = 900.0
+text = "MUESTRA DE BALANCE 0/100"
+horizontal_alignment = 2
 
 [node name="Windows" type="Control" parent="." unique_id=1079348094]
 layout_mode = 1

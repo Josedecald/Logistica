@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RuleSimple" format=3 uid="uid://ciu1ml6bm8883"]
+
+[ext_resource type="Script" uid="uid://gl1cu50dyjeq" path="res://Scripts/data/rule_simple.gd" id="1_gdjxg"]
+
+[resource]
+script = ExtResource("1_gdjxg")
+categoria = 13
+cantidad = 2
+destino = 2
+descripcion = "2+ Negligencia médica -> Infierno"
+prioridad = 12

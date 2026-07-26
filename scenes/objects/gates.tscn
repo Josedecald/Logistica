@@ -9,23 +9,20 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="HeavenGate" parent="." unique_id=1572192709 instance=ExtResource("1_n2bjk")]
-custom_minimum_size = Vector2(200, 200)
 layout_mode = 0
 offset_right = 200.0
-offset_bottom = 200.0
+offset_bottom = 100.0
 
 [node name="ReincarnationGate" parent="." unique_id=1558911539 instance=ExtResource("1_n2bjk")]
-custom_minimum_size = Vector2(200, 200)
 layout_mode = 0
-offset_top = 215.0
+offset_top = 150.0
 offset_right = 200.0
-offset_bottom = 415.0
+offset_bottom = 250.0
 destino = 1
 
 [node name="HellGate" parent="." unique_id=721500970 instance=ExtResource("1_n2bjk")]
-custom_minimum_size = Vector2(200, 200)
 layout_mode = 0
-offset_top = 430.0
+offset_top = 300.0
 offset_right = 200.0
-offset_bottom = 630.0
+offset_bottom = 400.0
 destino = 2

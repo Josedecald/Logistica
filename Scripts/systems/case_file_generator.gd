@@ -1,6 +1,10 @@
 extends Node
 
+signal expediente_generado(case_file: CaseFile)
+
 var nombres_usados: Array[String] = []
+const PROBABILIDAD_REINCIDENCIA := 0.40
+const MAX_REGISTROS_POR_INCIDENTE := 4
 
 func generar() -> CaseFile:
 	var perfil: Perfil.Tipo = PerfilInfo.TITULOS.keys().pick_random()
@@ -18,13 +22,26 @@ func generar() -> CaseFile:
 	)
 	compatibles.shuffle()
 
-	var cantidad := randi_range(1, 4)
-	for i in min(cantidad, compatibles.size()):
+	var cantidad_categorias := randi_range(1, 4)
+	for i in min(cantidad_categorias, compatibles.size()):
+		var categoria: Incidente.Categoria = compatibles[i]
+		var registros := 1
+		# Un hecho puede tener varios registros administrativos. Esto permite que
+		# reglas como "3+ Fraude" sean posibles sin repetir líneas en el expediente.
+		if randf() < PROBABILIDAD_REINCIDENCIA:
+			registros = randi_range(2, MAX_REGISTROS_POR_INCIDENTE)
 		var incidente := Incidente.new()
-		incidente.categoria = compatibles[i]
-		incidente.texto = TextosIncidente.obtener_texto(compatibles[i])
+		incidente.categoria = categoria
+		incidente.texto = TextosIncidente.obtener_texto(categoria)
+		incidente.cantidad_registros = registros
 		case_file.incidentes.append(incidente)
+		
+	if randf() < 0.4:  # 40% de las almas tienen algo que investigar
+		var cantidad_ocultos := randi_range(1, 2)
+		for i in cantidad_ocultos:
+			case_file.modificadores_ocultos.append(ModificadorPool.generar_aleatorio())
 
+	expediente_generado.emit(case_file)
 	return case_file
 
 func _generar_nombre_unico() -> String:

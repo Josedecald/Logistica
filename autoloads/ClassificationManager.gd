@@ -6,7 +6,13 @@ var niveles_activos: Array[Rule.Nivel] = [Rule.Nivel.FACIL, Rule.Nivel.MEDIO]
 
 func _ready() -> void:
 	_cargar_reglas()
-	reglas.sort_custom(func(a, b): return a.prioridad > b.prioridad)
+	reglas.sort_custom(_comparar_precedencia)
+
+func _comparar_precedencia(a: Rule, b: Rule) -> bool:
+	if a.prioridad != b.prioridad:
+		return a.prioridad > b.prioridad
+	# El desempate alfabético evita que el orden del sistema de archivos decida un caso.
+	return a.descripcion < b.descripcion
 
 func _cargar_reglas() -> void:
 	var dir := DirAccess.open("res://Scripts/data/rules_data/")
@@ -32,10 +38,26 @@ func _cargar_reglas() -> void:
 	print("Total de reglas cargadas: ", reglas.size())
 
 func regla_aplicada(case_file: CaseFile) -> Rule:
+	var aplicables := reglas_aplicables(case_file)
+	if aplicables.is_empty():
+		return null
+	_verificar_conflicto_de_precedencia(aplicables, case_file)
+	return aplicables[0]
+
+func reglas_aplicables(case_file: CaseFile) -> Array[Rule]:
+	var aplicables: Array[Rule] = []
 	for rule in reglas:
 		if rule.nivel in niveles_activos and rule.evaluate(case_file):
-			return rule
-	return null
+			aplicables.append(rule)
+	return aplicables
+
+func _verificar_conflicto_de_precedencia(aplicables: Array[Rule], case_file: CaseFile) -> void:
+	if aplicables.size() < 2:
+		return
+	var principal: Rule = aplicables[0]
+	for rule in aplicables.slice(1):
+		if rule.prioridad == principal.prioridad and rule.destino != principal.destino:
+			push_warning("Conflicto de reglas con la misma precedencia para %s: %s / %s" % [case_file.nombre, principal.descripcion, rule.descripcion])
 
 func destino_correcto(case_file: CaseFile) -> Gate.Destino:
 	var rule := regla_aplicada(case_file)

@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cf4oyh0ydh1cv"]
+
+[ext_resource type="Script" uid="uid://dy2e1mcuxdw35" path="res://Scripts/objects/day_summmary_window.gd" id="1_e5y0q"]
+
+[node name="DaySummmaryWindow" type="Control" unique_id=310686098]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e5y0q")
+
+[node name="DimBackground" type="ColorRect" parent="." unique_id=1174468496]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.627451)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1391613296]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1138842495]
+custom_minimum_size = Vector2(700, 700)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=245461924]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TituloLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1745547123]
+layout_mode = 2
+
+[node name="RendimientoLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1557908065]
+layout_mode = 2
+
+[node name="AlmasLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1956628919]
+layout_mode = 2
+
+[node name="PerdidasLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1794436256]
+layout_mode = 2
+
+[node name="CuotasLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1384611013]
+layout_mode = 2
+autowrap_mode = 2
+
+[node name="MonedasLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1381428824]
+layout_mode = 2
+
+[node name="ContinuarButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1437431956]
+layout_mode = 2
+text = "Continuar"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RuleSimple" format=3 uid="uid://chlklnib88swt"]
+
+[ext_resource type="Script" uid="uid://gl1cu50dyjeq" path="res://Scripts/data/rule_simple.gd" id="1_a61re"]
+
+[resource]
+script = ExtResource("1_a61re")
+categoria = 19
+cantidad = 4
+destino = 2
+descripcion = "4+ Difamación -> Infierno"
+prioridad = 4

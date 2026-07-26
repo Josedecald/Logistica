@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RuleSimple" format=3 uid="uid://dh1pdqay6fern"]
+
+[ext_resource type="Script" uid="uid://gl1cu50dyjeq" path="res://Scripts/data/rule_simple.gd" id="1_dhu48"]
+
+[resource]
+script = ExtResource("1_dhu48")
+modo = 1
+cantidad = -999
+destino = 1
+descripcion = "Ninguna regla anterior aplicó -> Reencarnación (trámite estándar)"
+prioridad = -1

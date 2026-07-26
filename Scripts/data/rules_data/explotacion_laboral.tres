@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RuleSimple" format=3 uid="uid://dm1r6h4cyiie8"]
+
+[ext_resource type="Script" uid="uid://gl1cu50dyjeq" path="res://Scripts/data/rule_simple.gd" id="1_gwk71"]
+
+[resource]
+script = ExtResource("1_gwk71")
+categoria = 15
+destino = 2
+descripcion = "3+ Explotación laboral -> Infierno"
+prioridad = 10

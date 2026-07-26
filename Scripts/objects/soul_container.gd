@@ -28,5 +28,11 @@ func set_selected(value: bool) -> void:
 func _get_drag_data(_at_position: Vector2):
 	var preview := duplicate() as Control
 	preview.modulate.a = 0.6
+	preview.position = -preview.size / 2.0
 	set_drag_preview(preview)
+	modulate.a = 0.0
 	return self
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_DRAG_END and is_instance_valid(self):
+		modulate.a = 1.0

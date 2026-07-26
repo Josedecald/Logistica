@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RuleSimple" format=3 uid="uid://lmj50tmc17j4"]
+
+[ext_resource type="Script" uid="uid://gl1cu50dyjeq" path="res://Scripts/data/rule_simple.gd" id="1_ep8h1"]
+
+[resource]
+script = ExtResource("1_ep8h1")
+categoria = 16
+destino = 2
+descripcion = "3+ Abuso de autoridad religiosa -> Infierno"
+prioridad = 10

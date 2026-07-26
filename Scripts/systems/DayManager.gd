@@ -34,19 +34,28 @@ var activa := false
 var cuotas: Dictionary = {}
 var progreso: Dictionary = {}
 
+var monedas_totales := 0   # billetera real, persiste entre días
+var monedas_dia := 0       # solo lo ganado HOY, se resetea cada jornada
+var almas_perdidas := 0
+
 func iniciar_jornada() -> void:
 	tiempo_restante = DURACION_REAL
 	activa = true
 	cuotas.clear()
 	progreso.clear()
+	monedas_dia = 0
+	aciertos = 0
+	errores = 0
+	almas_perdidas = 0
 	for destino in RANGOS_CUOTA:
 		var rango: Vector2i = RANGOS_CUOTA[destino]
 		cuotas[destino] = randi_range(rango.x, rango.y)
 		progreso[destino] = 0
 	jornada_iniciada.emit()
-	monedas = 0
-	aciertos = 0
-	errores = 0
+
+func siguiente_dia() -> void:
+	dia_actual += 1
+	iniciar_jornada()
 
 func _process(delta: float) -> void:
 	if not activa:
@@ -55,6 +64,7 @@ func _process(delta: float) -> void:
 	if tiempo_restante <= 0:
 		tiempo_restante = 0
 		activa = false
+		monedas_totales += monedas_dia
 		jornada_terminada.emit()
 
 func registrar_envio(destino: Gate.Destino, acierto: bool, nivel: Rule.Nivel) -> void:
@@ -63,13 +73,17 @@ func registrar_envio(destino: Gate.Destino, acierto: bool, nivel: Rule.Nivel) ->
 	if acierto:
 		aciertos += 1
 		progreso[destino] = progreso.get(destino, 0) + 1
-		monedas += PAGO_BASE + BONO_POR_NIVEL.get(nivel, 0)
+		monedas_dia += PAGO_BASE + BONO_POR_NIVEL.get(nivel, 0)
 		if progreso[destino] == cuotas[destino]:
-			monedas += BONO_CUOTA_COMPLETA
+			monedas_dia += BONO_CUOTA_COMPLETA
 			cuota_completada.emit(destino)
 	else:
 		errores += 1
-		monedas = max(0, monedas - PENALIZACION_ERROR)
+		monedas_dia = max(0, monedas_dia - PENALIZACION_ERROR)
+
+func descartar_pendientes(cantidad: int) -> void:
+	errores += cantidad
+	almas_perdidas += cantidad
 
 func rendimiento() -> float:
 	var total := aciertos + errores
