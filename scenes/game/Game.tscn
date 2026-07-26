@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dhqiejl3can1c" path="res://assets/sprites/prueba/background.png" id="2_lyhax"]
 [ext_resource type="PackedScene" uid="uid://bp8h4b6ukcwpv" path="res://scenes/objects/gates.tscn" id="3_lyhax"]
 [ext_resource type="Script" uid="uid://ba42j16mxy8k5" path="res://Scripts/systems/hud.gd" id="6_365ku"]
+[ext_resource type="PackedScene" uid="uid://sbb5fvrpkpyi" path="res://scenes/ui/ContratosPanel.tscn" id="7_gg4pt"]
 
 [node name="Game" type="Control" unique_id=50478020]
 layout_mode = 3
@@ -196,6 +197,13 @@ offset_right = 1900.0
 offset_bottom = 900.0
 text = "MUESTRA DE BALANCE 0/100"
 horizontal_alignment = 2
+
+[node name="ContratosPanel" parent="HUD" unique_id=1416985714 instance=ExtResource("7_gg4pt")]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 366.0
+offset_right = 483.0
+offset_bottom = 866.0
 
 [node name="Windows" type="Control" parent="." unique_id=1079348094]
 layout_mode = 1

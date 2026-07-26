@@ -22,17 +22,13 @@ func _ready() -> void:
 	var case_file_window_scene := preload("res://scenes/ui/case_file_window.tscn")
 	case_file_window = case_file_window_scene.instantiate()
 	windows.add_child(case_file_window)
-	
+	case_file_window.cerrado.connect(_on_case_file_cerrado)
+
 	var manual_window_scene := preload("res://scenes/ui/manual_window.tscn")
 	manual_window = manual_window_scene.instantiate()
 	windows.add_child(manual_window)
 	manual_button.pressed.connect(manual_window.mostrar)
 
-	DayManager.iniciar_jornada()
-	for gate in gates.get_children():
-		if gate is Gate:
-			gate.actualizar_cuota(0, DayManager.cuotas[gate.destino])
-			
 	var day_summary_scene := preload("res://scenes/ui/day_summary_window.tscn")
 	day_summary = day_summary_scene.instantiate()
 	windows.add_child(day_summary)
@@ -45,8 +41,7 @@ func _ready() -> void:
 
 	DayManager.jornada_terminada.connect(_on_jornada_terminada)
 	DayManager.jornada_iniciada.connect(_on_jornada_iniciada)
-	DayManager.iniciar_jornada()  
-	case_file_window.cerrado.connect(_on_case_file_cerrado)
+	DayManager.iniciar_jornada()
 
 func _process(_delta: float) -> void:
 	clock_label.text = "DÍA %d - %s   %s" % [DayManager.dia_actual, DayManager.turno_texto(), DayManager.hora_actual_texto()]
@@ -78,7 +73,6 @@ func _on_gate_drop_requested(container: SoulContainer, gate: Gate) -> void:
 	var nivel := regla.nivel if regla else Rule.Nivel.FACIL
 
 	DayManager.registrar_envio(gate.destino, acierto, nivel)
-	gate.actualizar_cuota(DayManager.progreso.get(gate.destino, 0), DayManager.cuotas[gate.destino])
 	_mostrar_resultado_de_clasificacion(acierto, gate.destino, regla)
 
 	if container.current_cell:
@@ -88,7 +82,7 @@ func _on_gate_drop_requested(container: SoulContainer, gate: Gate) -> void:
 
 	case_file_window.visible = false
 	gate.receive_container(container)
-	
+
 func _on_storage_drop_requested(container: SoulContainer, cell: StorageCell) -> void:
 	if container.current_cell:
 		container.current_cell.vacate()
@@ -122,15 +116,9 @@ func _on_jornada_terminada() -> void:
 			cell.vacate()
 
 	DayManager.descartar_pendientes(pendientes)
-	day_summary.mostrar()  # <- ahora sí, con los números ya correctos
-
-func _actualizar_labels_de_cuota() -> void:
-	for gate in gates.get_children():
-		if gate is Gate:
-			gate.actualizar_cuota(0, DayManager.cuotas[gate.destino])
+	day_summary.mostrar()
 
 func _on_jornada_iniciada() -> void:
-	_actualizar_labels_de_cuota()
 	resultado_label.text = ""
 
 func _on_case_file_cerrado() -> void:
