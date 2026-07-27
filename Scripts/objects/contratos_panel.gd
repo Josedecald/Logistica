@@ -14,8 +14,7 @@ const TEXTO_PRIORIDAD := {
 func _ready() -> void:
 	DayManager.jornada_iniciada.connect(_reconstruir_todo)
 	DayManager.progreso_actualizado.connect(_actualizar_uno)
-	if DayManager.activa:
-		_reconstruir_todo()
+	DayManager.contrato_respondido.connect(_actualizar_uno)
 
 func _reconstruir_todo() -> void:
 	_actualizar_uno(Gate.Destino.CIELO)
@@ -24,11 +23,18 @@ func _reconstruir_todo() -> void:
 
 func _actualizar_uno(destino: Gate.Destino) -> void:
 	var contrato: Contrato = DayManager.contratos[destino]
-	var actual: int = DayManager.progreso[destino]
-	var texto := "%s: %d / %d%s" % [
-		Gate.Destino.keys()[destino], actual, contrato.cantidad, TEXTO_PRIORIDAD[contrato.prioridad]
-	]
+	var row := _get_row(destino)
+	match contrato.estado:
+		Contrato.Estado.PENDIENTE:
+			row.text = "%s: esperando respuesta..." % Gate.Destino.keys()[destino]
+		Contrato.Estado.RECHAZADO:
+			row.text = "%s: contrato rechazado" % Gate.Destino.keys()[destino]
+		Contrato.Estado.ACEPTADO:
+			var actual: int = DayManager.progreso[destino]
+			row.text = "%s: %d / %d%s" % [Gate.Destino.keys()[destino], actual, contrato.cantidad, TEXTO_PRIORIDAD[contrato.prioridad]]
+
+func _get_row(destino: Gate.Destino) -> Label:
 	match destino:
-		Gate.Destino.CIELO: cielo_row.text = texto
-		Gate.Destino.REENCARNACION: reencarnacion_row.text = texto
-		Gate.Destino.INFIERNO: infierno_row.text = texto
+		Gate.Destino.CIELO: return cielo_row
+		Gate.Destino.REENCARNACION: return reencarnacion_row
+		_: return infierno_row

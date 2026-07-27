@@ -2,41 +2,8 @@ extends Node
 
 signal jornada_iniciada
 signal jornada_terminada
-
-const DURACION_REAL := 480.0  # 8 minutos reales 
-const HORA_INICIO := 7.0      # 7:00 am
-const HORA_FIN := 17.0        # 5:00 pm
-
-signal cuota_completada(destino: Gate.Destino)
-const PAGO_BASE := 10
-
-const BONO_POR_NIVEL := {
-	Rule.Nivel.FACIL: 0,
-	Rule.Nivel.MEDIO: 15,
-	Rule.Nivel.ESPECIFICO: 30,
-}
-const PENALIZACION_ERROR := 5
-const BONO_CUOTA_COMPLETA := 100
-
-var monedas := 0
-var aciertos := 0
-var errores := 0
-
-const RANGOS_CUOTA := {
-	Gate.Destino.CIELO: Vector2i(8, 15),
-	Gate.Destino.REENCARNACION: Vector2i(15, 25),
-	Gate.Destino.INFIERNO: Vector2i(20, 35),
-}
-
-var dia_actual := 1
-var tiempo_restante := DURACION_REAL
-var activa := false
-
-var cuotas: Dictionary = {}
 signal progreso_actualizado(destino: Gate.Destino)
-var monedas_totales := 0   # billetera real, persiste entre días
-var monedas_dia := 0       # solo lo ganado HOY, se resetea cada jornada
-var almas_perdidas := 0
+signal contrato_respondido(destino: Gate.Destino)
 
 const RANGOS_CANTIDAD := {
 	Gate.Destino.CIELO: Vector2i(8, 15),
@@ -53,14 +20,26 @@ const PENALIZACION_POR_PRIORIDAD := {
 	Contrato.Prioridad.URGENTE: 50,
 	Contrato.Prioridad.CRITICO: 150,
 }
+const FRASES := {
+	Gate.Destino.CIELO: "Las almas virtuosas son la luz que mantiene el equilibrio.",
+	Gate.Destino.REENCARNACION: "El ciclo debe continuar, sin excepciones.",
+	Gate.Destino.INFIERNO: "La justicia eterna no espera a nadie.",
+}
 
-var contratos: Dictionary = {}   # destino -> Contrato
-var progreso: Dictionary = {}    # destino -> int (sin cambios)
+var dia_actual := 1
+var tiempo_restante := DURACION_REAL
+var activa := false
+var contratos: Dictionary = {}
+var progreso: Dictionary = {}
+var monedas_totales := 0
+var monedas_dia := 0
+var aciertos := 0
+var errores := 0
+var almas_perdidas := 0
 
-
-func iniciar_jornada() -> void:
+func generar_contratos() -> void:
 	tiempo_restante = DURACION_REAL
-	activa = true
+	activa = false
 	monedas_dia = 0
 	aciertos = 0
 	errores = 0
@@ -76,11 +55,13 @@ func iniciar_jornada() -> void:
 		contrato.prioridad = _sortear_prioridad()
 		contrato.recompensa = RECOMPENSA_POR_PRIORIDAD[contrato.prioridad]
 		contrato.penalizacion = PENALIZACION_POR_PRIORIDAD[contrato.prioridad]
+		contrato.estado = Contrato.Estado.PENDIENTE
+		contrato.texto_objetivo = "Envía %d almas a %s en este turno." % [contrato.cantidad, Gate.Destino.keys()[destino]]
+		contrato.frase = FRASES.get(destino, "")
 		contratos[destino] = contrato
 		progreso[destino] = 0
 
 	jornada_iniciada.emit()
-
 
 func _sortear_prioridad() -> Contrato.Prioridad:
 	var r := randf()
@@ -90,9 +71,17 @@ func _sortear_prioridad() -> Contrato.Prioridad:
 		return Contrato.Prioridad.URGENTE
 	return Contrato.Prioridad.CRITICO
 
+func responder_contrato(destino: Gate.Destino, aceptado: bool) -> void:
+	var contrato: Contrato = contratos[destino]
+	contrato.estado = Contrato.Estado.ACEPTADO if aceptado else Contrato.Estado.RECHAZADO
+	contrato_respondido.emit(destino)
+
+func empezar_turno() -> void:
+	activa = true
+
 func siguiente_dia() -> void:
 	dia_actual += 1
-	iniciar_jornada()
+	generar_contratos()
 
 func _process(delta: float) -> void:
 	if not activa:
@@ -108,7 +97,7 @@ func _process(delta: float) -> void:
 func _cerrar_contratos_incompletos() -> void:
 	for destino in contratos:
 		var contrato: Contrato = contratos[destino]
-		if progreso[destino] < contrato.cantidad:
+		if contrato.estado == Contrato.Estado.ACEPTADO and progreso[destino] < contrato.cantidad:
 			monedas_dia -= contrato.penalizacion
 
 func registrar_envio(destino: Gate.Destino, acierto: bool, nivel: Rule.Nivel) -> void:
@@ -116,12 +105,12 @@ func registrar_envio(destino: Gate.Destino, acierto: bool, nivel: Rule.Nivel) ->
 		return
 	if acierto:
 		aciertos += 1
-		progreso[destino] = progreso.get(destino, 0) + 1
-		monedas_dia += PAGO_BASE + BONO_POR_NIVEL.get(nivel, 0)
 		var contrato: Contrato = contratos[destino]
-		if progreso[destino] == contrato.cantidad:
-			monedas_dia += contrato.recompensa
-			cuota_completada.emit(destino)
+		if contrato.estado == Contrato.Estado.ACEPTADO:
+			progreso[destino] += 1
+			monedas_dia += PAGO_BASE + BONO_POR_NIVEL.get(nivel, 0)
+			if progreso[destino] == contrato.cantidad:
+				monedas_dia += contrato.recompensa
 	else:
 		errores += 1
 		monedas_dia = max(0, monedas_dia - PENALIZACION_ERROR)
@@ -139,10 +128,19 @@ func rendimiento() -> float:
 
 func hora_actual_texto() -> String:
 	var avance := 1.0 - (tiempo_restante / DURACION_REAL)
-	var hora := HORA_INICIO + avance * (HORA_FIN - HORA_INICIO)
+	var hora := 7.0 + avance * (17.0 - 7.0)
 	return "%02d:%02d" % [int(hora), int((hora - int(hora)) * 60)]
 
 func turno_texto() -> String:
 	var avance := 1.0 - (tiempo_restante / DURACION_REAL)
-	var hora := HORA_INICIO + avance * (HORA_FIN - HORA_INICIO)
+	var hora := 7.0 + avance * (17.0 - 7.0)
 	return "TURNO DE MAÑANA" if hora < 12.0 else "TURNO DE TARDE"
+
+const DURACION_REAL := 480.0
+const PAGO_BASE := 10
+const BONO_POR_NIVEL := {
+	Rule.Nivel.FACIL: 0,
+	Rule.Nivel.MEDIO: 15,
+	Rule.Nivel.ESPECIFICO: 30,
+}
+const PENALIZACION_ERROR := 5

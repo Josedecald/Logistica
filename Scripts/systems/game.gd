@@ -13,6 +13,9 @@ var manual_window: ManualWindow
 var day_summary: DaySummaryWindow
 var case_file_window: CaseFileWindow
 
+var contrato_offer_window: ContratoOfferWindow
+var cola_ofertas: Array[Gate.Destino] = []
+
 func _ready() -> void:
 	for gate in gates.get_children():
 		if gate is Gate:
@@ -38,10 +41,15 @@ func _ready() -> void:
 		if cell is StorageCell:
 			cell.container_drop_requested.connect(_on_storage_drop_requested)
 			cell.informacion_revelada.connect(_on_informacion_revelada)
-
+	
+	var offer_scene := preload("res://scenes/ui/contrato_offer_window.tscn")
+	contrato_offer_window = offer_scene.instantiate()
+	windows.add_child(contrato_offer_window)
+	contrato_offer_window.respondido.connect(_ofrecer_siguiente_contrato)
+	
 	DayManager.jornada_terminada.connect(_on_jornada_terminada)
 	DayManager.jornada_iniciada.connect(_on_jornada_iniciada)
-	DayManager.iniciar_jornada()
+	DayManager.generar_contratos()
 
 func _process(_delta: float) -> void:
 	clock_label.text = "DÍA %d - %s   %s" % [DayManager.dia_actual, DayManager.turno_texto(), DayManager.hora_actual_texto()]
@@ -129,3 +137,15 @@ func _on_case_file_cerrado() -> void:
 func _on_informacion_revelada(container: SoulContainer) -> void:
 	if selected_container == container:
 		case_file_window.show_case_file(container.case_file)
+		
+func _iniciar_ofertas() -> void:
+	cola_ofertas = [Gate.Destino.CIELO, Gate.Destino.REENCARNACION, Gate.Destino.INFIERNO]
+	_ofrecer_siguiente_contrato()
+	
+func _ofrecer_siguiente_contrato() -> void:
+	if cola_ofertas.is_empty():
+		DayManager.empezar_turno()
+		return
+	var destino: Gate.Destino = cola_ofertas.pop_front()
+	contrato_offer_window.mostrar(DayManager.contratos[destino])
+	
